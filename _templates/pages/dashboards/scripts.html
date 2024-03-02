@@ -1,0 +1,23 @@
+
+{% extends layout %}
+
+{% load i18n %}
+
+{% block title %}{% translate "Script" %}{% endblock %}
+
+{% block content %}
+{% include 'partials/modals/_edit_script.html' %}
+{% include 'partials/modals/_edit_copilot.html' %}
+
+<div class="container">
+    <div class="row">
+        <div id="content-script">{{ content|linebreaksbr }}</div>
+    </div>
+</div>
+
+<script>
+    function editscript() {
+        document.getElementById("edit-script").value = document.getElementById("content-script").innerText;
+    }
+</script>
+{% endblock content %}
