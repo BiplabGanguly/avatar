@@ -1,0 +1,222 @@
+<style>
+	.modal-content {
+		background-color: #373A42;
+		color: white;
+	}
+
+	.video-short-fields {
+		display: none;
+	}
+
+	.head-text {
+		color: #D0D3D4;
+	}
+
+	.text-muted {
+		color: #D0D3D4;
+	}
+
+	.form-check {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 2vh;
+		font-size: 2vh;
+	}
+
+	.form-check-label {
+		margin-left: 1vh;
+	}
+
+	#media {
+		display: none;
+		margin-top: 6vh;
+	}
+
+	#genre {
+		margin-top: 6vh;
+	}
+
+	#synop {
+		margin-top: 2vh;
+	}
+
+	.btn-icon {
+		color: white;
+		font-size: 3ch;
+	}
+
+
+	.input-box {
+		height: 7vh;
+		background-color: #373A42;
+		color: #D0D3D4;
+		border: 1px solid #373A42;
+		font-size: 2.4vh;
+		border-bottom: 1px solid #D0D3D4;
+	}
+
+	.input-box:focus {
+		height: 7vh;
+		background-color: #373A42;
+		color: #D0D3D4;
+		border: 1px solid #373A42;
+		border-bottom: 1px solid #D0D3D4;
+	}
+
+	.input-textarea {
+		font-size: 2.4vh;
+		background-color: #373A42;
+		border: 1px solid #373A42;
+		color: #D0D3D4;
+		border-left: 1px solid #FFC107;
+	}
+
+	.input-textarea:focus {
+		font-size: 2.4vh;
+		color: #D0D3D4;
+		background-color: #373A42;
+		border: 1px solid #373A42;
+		border-left: 1px solid #FFC107;
+	}
+
+	.input-select-box {
+		height: 7vh;
+		font-size: 2.4vh;
+		color: #D0D3D4;
+		background-color: #373A42;
+		border: 1px solid #373A42;
+		border-bottom: 1px solid #D0D3D4;
+	}
+</style>
+
+<!--begin::Modal - New Target-->
+<div class="modal fade" id="kt_modal_new_target" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered mw-650px">
+		<div class="modal-content rounded">
+			<div class="modal-header pb-0 border-0 justify-content-end">
+				<div class="btn btn-sm btn-icon" data-bs-dismiss="modal">X</div>
+			</div>
+			<div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+				<form id="kt_modal_new_target_form" class="form" method="post"
+					action="{% url 'dashboards:post_script' user.id %}">
+					{%csrf_token%}
+					<div class="mb-13 text-center">
+						<h1 class="mb-3 head-text">Create Script for <span id="title_text">Feature Film</span></h1>
+						<div class="text-muted fw-semibold fs-5">If you need more info, please check
+							<a href="#" class="fw-bold link-primary">Script creation Guidelines</a>.
+						</div>
+					</div>
+					<div class="d-flex flex-column mb-8 fv-row">
+						<div class="container">
+							<div class="row ratio-content">
+								<div class="col-md-6">
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="script_type"
+											id="flexRadioDefault1" value="feature film" checked>
+										<label class="form-check-label" for="script_type">
+											Feature Film
+										</label>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="script_type"
+											id="flexRadioDefault2" value="video short">
+										<label class="form-check-label" for="script_type">
+											Video Short
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--begin::Label-->
+						<div>
+							<!--end::Label-->
+							<input type="text" class="form-control input-box" placeholder="Title" name="script_title" />
+						</div>
+						<!--end::Input group-->
+
+						<div id="synop">
+							<!--end::Label-->
+							<input type="text" class="form-control input-box input-data" placeholder="synopsis"
+								name="synopsis" id="synopsis" />
+						</div>
+
+						<!--begin::Input group-->
+						<div class="row g-9 mb-8">
+							<!--begin::Col-->
+							<div class="col-md-12 fv-row" id="genre">
+								<select class="form-select input-select-box" data-control="select2"
+									data-hide-search="true" data-placeholder="Genre" name="script_genre" id="genre">
+									<option value="">Select genre...</option>
+									<option value="Action">Action</option>
+									<option value="Adventure">Adventure</option>
+									<option value="Comedy">Comedy</option>
+									<option value="Drama">Drama</option>
+								</select>
+							</div>
+
+
+
+							<div class="col-md-12 fv-row" id="media">
+								<select class="form-select input-select-box" data-control="select2"
+									data-hide-search="true" data-placeholder="Social Media Platform"
+									name="social_platform" id="social">
+									<option value="">Select platform...</option>
+									<option value="Instagram reels">instagram reels</option>
+									<option value="Youtube shorts">youtube shorts</option>
+								</select>
+							</div>
+							<!--end::Col-->
+						</div>
+
+						<!--begin::Input group-->
+						<div class="d-flex flex-column mb-8 video-short-fields">
+							<textarea class="form-control input-textarea" rows="3" name="plot"
+								placeholder="Type Script Plot"></textarea>
+						</div>
+						<!--end::Input group-->
+
+						<!--begin::Actions-->
+						<div class="text-center">
+							<button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Cancel
+							</button>
+							<button type="submit" class="btn btn-primary">
+								<span class="indicator-label">Submit</span>
+							</button>
+						</div>
+						<!--end::Actions-->
+				</form>
+				<!--end:Form-->
+			</div>
+			<!--end::Modal body-->
+		</div>
+		<!--end::Modal content-->
+	</div>
+	<!--end::Modal dialog-->
+</div>
+<!--end::Modal - New Target-->
+
+<script>
+	ff = document.getElementById("flexRadioDefault1");
+	vs = document.getElementById("flexRadioDefault2");
+	title_text = document.getElementById("title_text");
+	media = document.getElementById("media");
+	genre = document.getElementById("genre");
+	synop = document.getElementById("synop");
+
+	ff.addEventListener('change', function () {
+		title_text.innerText = "Feature Film";
+		genre.style.display = "block";
+		media.style.display = "none";
+		synop.style.display = "block";
+	})
+
+	vs.addEventListener('change', function () {
+		title_text.innerText = "Video Short";
+		media.style.display = "block";
+		genre.style.display = "none";
+		synop.style.display = "none";
+	})
+</script>

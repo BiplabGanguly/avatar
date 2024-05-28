@@ -1,0 +1,26 @@
+{% extends 'layout/master.html' %}
+
+{% block layout %}
+
+{% include './partials/sidebar-layout/_header.html' %}
+{% include './partials/sidebar-layout/_header.html' %}
+<style>
+	.app-default {
+		background-color: #222429;
+	}
+</style>
+
+
+{% block content %}
+{% endblock content %}
+
+<!--end::Content wrapper-->
+
+
+{% include 'partials/_drawers.html' %}
+
+{% include 'partials/_modals.html' %}
+
+{% include 'partials/_scrolltop.html' %}
+
+{% endblock layout %}

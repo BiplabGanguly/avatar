@@ -1,0 +1,128 @@
+{% load i18n %}
+<style>
+	a {
+		text-decoration: none;
+		color: white;
+	}
+
+	.app-navbar-item {
+		display: flex;
+	}
+
+	.create-btn {
+		background-color: transparent;
+		color: white;
+		height: 40px;
+		text-align: center;
+		margin-top: 1.8vh;
+		font-size: 2.4vh;
+		margin-left: 3vh;
+	}
+
+	.edit-btn {
+		margin-left: 4vh;
+		margin-top: 1vh;
+		height: 40px;
+		text-align: center;
+		font-size: 2vh;
+		background-color: white;
+		color: black;
+	}
+
+	.edit-btn:hover {
+		margin-left: 4vh;
+		margin-top: 1vh;
+		height: 40px;
+		text-align: center;
+		font-size: 2vh;
+		background-color: white;
+		color: black;
+	}
+
+	.form-switch {
+		margin-top: 3vh;
+		font-size: 2.4vh;
+		margin-left: 3vh;
+	}
+
+	.form-check-label {
+		color: #D0D3D4;
+	}
+
+	.form-check-input {
+		background-color: #D0D3D4;
+	}
+
+	.nav-link {
+		margin-left: 2vh;
+	}
+</style>
+<!--begin::Menu wrapper-->
+<div class="app-header-menu app-header-mobile-drawer align-items-stretch" data-kt-drawer="true"
+	data-kt-drawer-name="app-header-menu" data-kt-drawer-activate="{default: true, lg: false}"
+	data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="end"
+	data-kt-drawer-toggle="#kt_app_header_menu_toggle" data-kt-swapper="true"
+	data-kt-swapper-mode="{default: 'append', lg: 'prepend'}"
+	data-kt-swapper-parent="{default: '#kt_app_body', lg: '#kt_app_header_wrapper'}">
+	<!--begin::Menu-->
+	<div class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0"
+		id="kt_app_header_menu" data-kt-menu="true">
+		<!--begin:Menu item-->
+		<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start"
+			class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+			<!--begin:Menu link-->
+
+			{% if '/dashboard/' in request.path %}
+			{% with request.path|slice:"11:" as uid %}
+			<span class="">
+				<a class="fw-bold" href="{% url 'dashboards:index' user.id %}">{% trans 'Dashboard' %}</a>
+				<span class="menu-arrow d-lg-none"></span>
+			</span>
+
+			{% endwith %}
+			{% elif '/script/' in request.path %}
+			{% with request.path|slice:"11:" as sid %}
+			<span class="d-flex">
+				<a class="nav-link fw-bold" aria-current="page"
+					href="{% url 'dashboards:index' user.id %}">{% trans 'Dashboard' %}</a>
+				<a class="nav-link fw-bold" aria-current="page" href="">[ {{scriptitlt}} ]</a>
+			</span>
+			{% endwith %}
+			{% endif %}
+			</span>
+			<!--end:Menu link-->
+			<!--begin:Menu sub-->
+			{% if '/dashboard/' in request.path %}
+			{% with request.path|slice:"11:" as uid %}
+			<div class="fw-bold create-btn" data-bs-toggle="modal" data-bs-target="#kt_modal_new_target">
+				{% trans 'Create script' %}</div>
+			{% endwith %}
+			{% elif '/script/' in request.path %}
+			{% with request.path|slice:"11:" as sid %}
+			<button class="btn btn-sm fw-bold edit-btn" type="submit" form="Editscript">
+				Save Script</button>
+
+			<button class="btn btn-sm fw-bold edit-btn" type="submit" form="deleteScript">
+				Delete</button>
+			<div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" role="switch" id="copilot"
+					onchange="handleCheckboxChange(this)">
+				<label class="form-check-label" for="flexSwitchCheckDefault">Copilot</label>
+			</div>
+			{% endwith %}
+			{% endif %}
+			<!--end:Menu sub-->
+		</div>
+		<div class="app-navbar-item">
+
+		</div>
+		<!--end:Menu item-->
+		<!--begin:Menu item-->
+
+		<!--begin:Menu item-->
+
+		<!--end:Menu item-->
+	</div>
+	<!--end::Menu-->
+</div>
+<!--end::Menu wrapper-->
