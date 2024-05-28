@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock title %} - Avatar</title>
+    <meta charset="utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>      
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="" />
+    <link rel="canonical" href=""/>
+    <link rel="shortcut icon" href="{% includeFavicon %}"/>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .home-conatainer {
+            background: url("{% static 'media/auth/bg9-dark.jpg' %}");
+            background-size: cover;
+            height: 100vh;
+        }
+
+        .navbar-collapse {
+            display: flex;
+            justify-content: end;
+        }
+
+        .content-box-home {
+            color: white;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            display: block;
+        }
+
+        .content-title {
+            font-size: 18vh;
+        }
+
+        .hub-title {
+            font-size: 5vh;
+        }
+
+        .paragraph {
+            font-size: 3vh;
+        }
+
+        .login-home {
+            margin-top: 3vh;
+            width: 12vh;
+            background-color: #FFC107;
+        }
+
+        .navbar-brand {
+            color: white;
+            font-size: 5vh;
+            margin-left: 3vh;
+        }
+    </style>
+    <!-- <a href="{% url 'auth:signin' %}">signin</a> -->
+
+    <div class="container-fluid home-conatainer">
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <div class="navbar-brand fw-bold">Ava<span class="text-warning fw-bold me-1">tar</span></div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <a href="{% url 'auth:signin' %}"><button class="btn login-home">Signin</button></a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 content-box-home">
+                <div class="content">
+                    <div class="content-title fw-bold">Ava<span class="text-warning fw-bold me-1">tar</span></div>
+                    <div class="hub-title">Film Industry Service Hub</div>
+                    <div class="paragraph">Helping bring the next masterpiece to the big screens.</div>
+                    <a href="{% url 'auth:signin' %}"><button class="btn login-home">Signin</button></a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

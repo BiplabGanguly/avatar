@@ -6,69 +6,66 @@
 
 {% block content %}
 
-<!--begin::Form-->
-<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="/" action="/" method="post">
+<style>
+    .signin-text {
+        font-size: 5vh;
+        color: white;
+    }
+
+    .signin-content {
+        color: white;
+    }
+
+    .input-box-signin {
+        background-color: #222429;
+        border: 1px solid #222429;
+        font-size: 2.4vh;
+        color: white;
+        border-bottom: 1px solid #D0D3D4;
+        transition: linear;
+    }
+
+    .input-box-signin:focus {
+        background-color: #222429;
+        border: 1px solid #222429;
+        font-size: 2.4vh;
+        color: white;
+        border-bottom: 3px solid #D0D3D4;
+    }
+</style>
+
+<form class="form signin w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="/" action=""
+    method="post">
     {%csrf_token%}
     <!--begin::Heading-->
     <div class="text-center mb-11">
         <!--begin::Title-->
-        <h1 class="text-gray-900 fw-bolder mb-3">
+        <h1 class=" fw-bolder mb-3 signin-text">
             Sign In
         </h1>
         <!--end::Title-->
 
         <!--begin::Subtitle-->
-        <div class="text-gray-500 fw-semibold fs-6">
-            Your Social Campaigns
+        <div class="fw-semibold fs-6 signin-content">
+            Sign in to Avatar
         </div>
         <!--end::Subtitle--->
     </div>
     <!--begin::Heading-->
 
-    <!--begin::Login options-->
-    <div class="row g-3 mb-9">
-        <!--begin::Col-->
-        <div class="col-md-6">
-            <!--begin::Google link--->
-            <a href="#" class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
-                <img alt="Logo" src="{% static 'media/svg/brand-logos/google-icon.svg' %}" class="h-15px me-3"/>   
-                Sign in with Google
-            </a>
-            <!--end::Google link--->
-        </div>
-        <!--end::Col-->
-
-        <!--begin::Col-->
-        <div class="col-md-6">
-            <!--begin::Google link--->
-            <a href="#" class="btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100">
-                <img alt="Logo" src="{% static 'media/svg/brand-logos/apple-black.svg' %}" class="theme-light-show h-15px me-3"/>
-                <img alt="Logo" src="{% static 'media/svg/brand-logos/apple-black-dark.svg' %}" class="theme-dark-show h-15px me-3"/>     
-                Sign in with Apple
-            </a>
-            <!--end::Google link--->
-        </div>
-        <!--end::Col-->
-    </div>
-    <!--end::Login options-->
-
-    <!--begin::Separator-->
-    <div class="separator separator-content my-14">
-        <span class="w-125px text-gray-500 fw-semibold fs-7">Or with email</span>
-    </div>
-    <!--end::Separator-->
-
     <!--begin::Input group--->
     <div class="fv-row mb-8">
         <!--begin::Email-->
-        <input type="text" placeholder="Username" name="username" autocomplete="off" class="form-control bg-transparent"/> 
+        <input type="text" placeholder="Username" name="username" autocomplete="off"
+            class="form-control input-box-signin" />
         <!--end::Email-->
     </div>
 
     <!--end::Input group--->
-    <div class="fv-row mb-3">    
+    <div class="fv-row mb-3">
         <!--begin::Password-->
-        <input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent"/>
+        <input type="password" placeholder="Password" name="password" autocomplete="off"
+            class="form-control input-box-signin" />
         <!--end::Password-->
     </div>
     <!--end::Input group--->
@@ -83,12 +80,12 @@
         </a>
         <!--end::Link-->
     </div>
-    <!--end::Wrapper-->    
+    <!--end::Wrapper-->
 
     <!--begin::Submit button-->
     <div class="d-grid mb-10">
-        <button type="submit" class="btn btn-primary">
-            {% include 'partials/general/_button-indicator.html' with label='Sign In' %}
+        <button type="submit" class="btn btn-light">
+            Sign in
         </button>
     </div>
     <!--end::Submit button-->
@@ -103,6 +100,6 @@
     </div>
     <!--end::Sign up-->
 </form>
-<!--end::Form--> 
+<!--end::Form-->
 
 {% endblock content %}

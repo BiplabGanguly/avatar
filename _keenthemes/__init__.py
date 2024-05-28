@@ -15,8 +15,8 @@ class KTLayout:
         # See example in dashboards/views.py
         context.update(
             {
-                'layout': KTTheme.setLayout('default.html', context),
-                # "layout": KTTheme.setLayout("default_header_layout.html", context),
+                # 'layout': KTTheme.setLayout('default.html', context),
+                "layout": KTTheme.setLayout("default_header_layout.html", context),
                 # "layout": KTTheme.setLayout("default_mini_sidebar_layout.html", context),
                 # "layout": KTTheme.setLayout("default_overlay_layout.html", context),
             }

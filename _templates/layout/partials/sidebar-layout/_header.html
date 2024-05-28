@@ -1,26 +1,139 @@
-<!--begin::Header-->
-<div id="kt_app_header" class="app-header" data-kt-sticky="true" data-kt-sticky-activate="{default: true, lg: true}" data-kt-sticky-name="app-header-minimize" data-kt-sticky-offset="{default: '200px', lg: '0'}" data-kt-sticky-animation="false">
-	<!--begin::Header container-->
-	<div class="app-container container-fluid d-flex align-items-stretch justify-content-between" id="kt_app_header_container">
-		<!--begin::Sidebar mobile toggle-->
-		<div class="d-flex align-items-center d-lg-none ms-n3 me-1 me-md-2" title="Show sidebar menu">
-			<div class="btn btn-icon btn-active-color-primary w-35px h-35px" id="kt_app_sidebar_mobile_toggle">{% getIcon 'abstract-14' 'fs-2 fs-md-1' %}</div>
+<style>
+	.navbar {
+		background-color: #373A42;
+		box-shadow: 0 0 10px #1D6EE3;
+		color: #D0D3D4;
+	}
+
+	.navbar-brand {
+		color: #D0D3D4;
+		margin-left: 3vh;
+		font-size: 4vh;
+		transition: 1s ease;
+	}
+
+	.navbar-brand:hover {
+		color: white;
+	}
+
+	.nav-item a {
+		color: #D0D3D4;
+		font-size: 2.8vh;
+		margin-left: 2vh;
+		margin-top: .7vh;
+		transition: 1s ease;
+	}
+
+	.nav-item a:hover {
+		color: white;
+	}
+
+	.create-btn {
+		margin-right: 3vh;
+		font-size: 1.8vh;
+	}
+
+	.user-email {
+		font-size: 2vh;
+		margin-right: 1vh;
+	}
+
+	.script-btn {
+		margin-right: 3vh;
+		font-size: 1.8vh;
+	}
+
+	.dropdown-menu {
+		background-color: #373A42;
+	}
+
+	.dropdown-item {
+		font-size: 2vh;
+		color: #D0D3D4;
+		text-decoration: none;
+	}
+
+	.dropdown-item:hover {
+		background-color: #373A42;
+		color: #D0D3D4;
+	}
+
+	.form-switch {
+		margin-top: 2vh;
+		margin-right: 3vh;
+		font-size: 2vh;
+	}
+
+	.form-check-label {
+		color: #D0D3D4;
+	}
+
+	.form-check-input {
+		background-color: #D0D3D4;
+	}
+</style>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-brand fw-bold">Ava<span class="text-warning fw-bold me-1">tar</span></div>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				{% if '/dashboard/' in request.path %}
+				{% with request.path|slice:"11:" as uid %}
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="{% url 'dashboards:index' user.id %}">Dashboard</a>
+				</li>
+				{% endwith %}
+				{% elif '/script/' in request.path %}
+				{% with request.path|slice:"11:" as sid %}
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="{% url 'dashboards:index' user.id %}">Dashboard</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="">{{scriptitlt}}</a>
+				</li>
+				{% endwith %}
+				{% endif %}
+			</ul>
+
+
+			{% if '/dashboard/' in request.path %}
+			{% with request.path|slice:"11:" as uid %}
+			<div class="btn btn-sm fw-bold btn-primary create-btn" data-bs-toggle="modal"
+				data-bs-target="#kt_modal_new_target">
+				Create Script</div>
+			{% endwith %}
+			{% elif '/script/' in request.path %}
+			{% with request.path|slice:"11:" as sid %}
+			<div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" role="switch" id="copilot"
+					onchange="handleCheckboxChange(this)">
+				<label class="form-check-label" for="flexSwitchCheckDefault">Copilot</label>
+			</div>
+			<button class="btn btn-sm fw-bold btn-primary script-btn" data-bs-toggle="modal" type="submit"
+				form="Editscript">
+				save script</button>
+
+			<button class="btn btn-sm fw-bold btn-primary script-btn" data-bs-toggle="modal"
+				data-bs-target="#edit_script_modal" type="submit" form="deleteScript">
+				delete</button>
+			{% endwith %}
+			{% endif %}
+			<div class="dropdown">
+				<div class="user-email dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+					aria-expanded="false">
+					{{user.email}}
+				</div>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					<li><a class="dropdown-item" href="#">Profile</a></li>
+					<li><a class="dropdown-item" href="#">Settings</a></li>
+					<li><a class="dropdown-item" href="/">Signout</a></li>
+				</ul>
+			</div>
 		</div>
-		<!--end::Sidebar mobile toggle-->
-		<!--begin::Mobile logo-->
-		<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-			<a href="/" class="d-lg-none">
-				<img alt="Logo" src="{% static 'media/logos/default-small.svg' %}" class="h-30px" />
-			</a>
-		</div>
-		<!--end::Mobile logo-->
-		<!--begin::Header wrapper-->
-		<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
-			{% include './header/_menu/_menu.html' %}
-			{% include './header/_navbar.html' %}
-		</div>
-		<!--end::Header wrapper-->
 	</div>
-	<!--end::Header container-->
-</div>
-<!--end::Header-->
+</nav>

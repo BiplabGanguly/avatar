@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-blehs+vjho@s4qug%9ferf0-tucvbr9#_1k2!#ebs4u68@)ss+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','*']
 
 
 # Application definition
@@ -47,11 +47,14 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'middleware.lang.LanguageMiddleware',
+    'middleware.main.TimezoneMiddleware',
 ]
 
 ROOT_URLCONF = '_keenthemes.urls'
@@ -88,7 +91,7 @@ WSGI_APPLICATION = '_keenthemes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'myscript',
+        'NAME': 'myscript2',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -119,16 +122,27 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-US'
+# LANGUAGE_CODE = 'ar'
 
+LANGUAGES = [
+    ('en', 'English'),
+    ('fr', 'French'),
+    ('es', 'Spanish'),
+    ('ar', 'Arabic'),
+]
+
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locales'),
+]
+
+# TIME_ZONE = 'Asia/Kolkata'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_TZ = True
 
-LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale'),
-]
 
 
 # Static files (CSS, JavaScript, Images)
@@ -139,6 +153,42 @@ STATIC_URL = 'assets/'
 STATICFILES_DIRS = [
     BASE_DIR / 'assets',
 ]
+
+
+#  logger settings here........................................
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'main_formatter': {
+            'format': '{asctime} :: {created} :: {levelname} :: {pathname} :: {filename} :: line no. {lineno:d} :: {funcName} :: {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'class': 'logging.FileHandler',
+            'formatter': 'main_formatter', 
+            'filename': os.path.join(BASE_DIR, 'warning.log'), 
+            'mode': 'w',
+        },
+    },
+    'loggers': {
+        'main': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
+
+#................................................................
+
+
+
 
 
 # Default primary key field type
@@ -368,3 +418,6 @@ KT_THEME_VENDORS = {
         ]
     }
 }
+
+
+

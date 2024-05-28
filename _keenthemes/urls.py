@@ -18,16 +18,27 @@ from django.urls import include, path
 from django.conf import settings
 from _keenthemes.views import SystemView
 from . import views
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Dashboard urls
-    path('', include('dashboards.urls')),
+    
 
     # Auth urls
-    path('', include('auth.urls')),
+    # path('', include('auth.urls')),
 ]
 
-handler404 = SystemView.as_view(template_name = 'pages/' + settings.KT_THEME + '/system/not-found.html', status=404)
-handler500 = SystemView.as_view(template_name = 'pages/' + settings.KT_THEME + '/system/error.html', status=500)
+urlpatterns += i18n_patterns(
+    path('', include('dashboards.urls')),
+    path('', include('auth.urls')),
+)
+
+
+handler404 = SystemView.as_view(template_name='pages/system/not-found.html', status=404)
+handler500 = SystemView.as_view(template_name='pages/system/error.html', status=500)
+
+urlpatterns += [
+    path('<path:route_not_found>/', handler404),
+]
